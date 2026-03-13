@@ -19,7 +19,7 @@ void HouseRoomWidget::translateLanguage()
 #define C_Y 230
 #define S_SIZE_W 290
 #define S_SIZE_H  90
-#define B_SIZE_W 320
+#define B_SIZE_W OLED_PIX_X
 #define B_SIZE_H 110
 void HouseRoomWidget::show_move()
 {
@@ -97,11 +97,11 @@ HouseRoomWidget::HouseRoomWidget(TreeModel *model, QWidget *parent)
 {
     int j;
 	this->setWindowFlags(Qt::FramelessWindowHint);
-	this->setMaximumSize(320,320);
-	this->setMinimumSize(320,320);
+	this->setMaximumSize(OLED_PIX_X, OLED_PIX_Y);
+	this->setMinimumSize(OLED_PIX_X, OLED_PIX_Y);
 
 	wid_room = new QWidget(this);
-	wid_room->setFixedSize(320,320);
+	wid_room->setFixedSize(OLED_PIX_X, OLED_PIX_Y);
 	
     group_buttom_scale = new QParallelAnimationGroup;
 	
@@ -160,7 +160,7 @@ HouseRoomWidget::HouseRoomWidget(TreeModel *model, QWidget *parent)
 		}
 		else if (i == 1)
 		{
-		    room_button[i]->setGeometry(QRect(0, 105, 320, 110));
+		    room_button[i]->setGeometry(QRect(0, 105, OLED_PIX_X, 110));
 			room_button[i]->setStyleSheet("background-color:rgb(85,85,85);\
 					font-size:30px;color:white;font-weight:bold;\
 	                border-radius: 15px;  border: 2px;");
@@ -202,7 +202,7 @@ void HouseRoomWidget::turnIcon(QString current_icon)
     QPropertyAnimation *animation_house = new QPropertyAnimation(wid_room, "geometry");
 	animation_house->setDuration(400);
 	animation_house->setKeyValueAt(0, QRect(0,0,320,320));
-	animation_house->setKeyValueAt(1, QRect(-320, 0, 320, 320));
+	animation_house->setKeyValueAt(1, QRect(-OLED_PIX_X, 0, 320, 320));
 	animation_house->start(QAbstractAnimation::DeleteWhenStopped);
 	//wid_room->hide();
 	create_houseflag_file();

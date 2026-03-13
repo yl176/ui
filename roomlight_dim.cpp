@@ -18,8 +18,8 @@
 int g_current_dim;
 
 QMutex mutex;
-//QSemaphore sema_product(1);    //¶¨ÒåÉú²úÕßÐÅºÅÈÝÁ¿Îª10.
-
+	this->setMaximumSize(OLED_PIX_X, OLED_PIX_Y);
+	this->setMinimumSize(OLED_PIX_X, OLED_PIX_Y);
 void RoomLightDimWidget::translateLanguage()
 {
 
@@ -145,7 +145,7 @@ RoomLightDimWidget::RoomLightDimWidget(int room_id, TreeModel *model, QWidget *p
 	img_label_back->hide();
 	#endif
 //	main_wid = new QWidget(this);
-//	main_wid->setFixedSize(320,320);
+//	main_wid->setFixedSize(OLED_PIX_X, OLED_PIX_Y);
 
 	dim_text = new QLabel(this);
 	dim_text->setGeometry(QRect(90, 80, 122, 75));
@@ -160,7 +160,7 @@ RoomLightDimWidget::RoomLightDimWidget(int room_id, TreeModel *model, QWidget *p
 			"border-top-left-radius:20px;border-bottom-left-radius:20px;}");
 
 	//dim_bar = new QProgressBar(main_wid);
-	//dim_bar->setGeometry(QRect(0, 200, 320, 60));
+	//dim_bar->setGeometry(QRect(0, 200, OLED_PIX_X, 60));
 	//dim_bar->setRange(0, 100);
 	//dim_bar->setValue(0);
    /* int L_len = 0;
@@ -169,7 +169,7 @@ RoomLightDimWidget::RoomLightDimWidget(int room_id, TreeModel *model, QWidget *p
 	int value = 0;
 	value = 0;//ast_dev[current_index].dim_value;
 	main_wid = new QWidget(this);
-	main_wid->setFixedSize(320,320);
+	main_wid->setFixedSize(OLED_PIX_X, OLED_PIX_Y);
 
 	ProgressBar_L = new QLabel(main_wid);
 	ProgressBar_L->setGeometry(QRect(0, 60, L_len, 44));
@@ -272,7 +272,7 @@ void RoomLightDimWidget::onTimerDimOut()
 	
 		qDebug()<<"2sum="<<sum<<",i_light_num="<<i_light_num<<",average="<<average;
 	
-		if (!step)//Ë³Ê±Õë
+		if (!step)//é¡ºæ—¶é’ˆ
 		{
 			if (average < 100)
 			{
@@ -502,7 +502,7 @@ enno_result RoomLightDimWidget::light_dim(char *buf_in, uint32 len_buf)
     char *buf;
 	static uint32 last_step = 2;
 	uint32 step;
-	//int aul_dim[6] = {10, 5, 3, -3, -5, -10}; //µ÷ËÙÄ£Ê½
+	//int aul_dim[6] = {10, 5, 3, -3, -5, -10}; //è°ƒé€Ÿæ¨¡å¼
 	//int aul_dim[6] = {1, 1, 1, 1, 1, 1};
 	int aul_dim[6] = {10, 10, 10, 10, 10, 10};
 	//int aul_dim[6] = {1, 2, 2, 2, 3, 3};
@@ -566,7 +566,7 @@ enno_result RoomLightDimWidget::light_dim(char *buf_in, uint32 len_buf)
 	}
 	last_time = current_time;
 
-    // ¾ÍËã¼ÓÈ¨Öµ¡£
+    // å°±ç®—åŠ æƒå€¼ã€‚
 	if (val_cnt[0] > val_cnt[1])
 	{
 	    if (step == 0 && last_step != 0) 
@@ -597,7 +597,7 @@ enno_result RoomLightDimWidget::light_dim(char *buf_in, uint32 len_buf)
 		    return ENNO_OK;
 		}
 	}
-	if (!step)//Ë³Ê±Õë
+	if (!step)//é¡ºæ—¶é’ˆ
 	{
 		if (average >= 100)
 		{
@@ -674,7 +674,7 @@ enno_result RoomLightDimWidget::light_dim(char *buf_in, uint32 len_buf)
 
 	//qDebug()<<"2sum="<<sum<<",i_light_num="<<i_light_num<<",average="<<average;
 
-	if (!step)//Ë³Ê±Õë
+	if (!step)//é¡ºæ—¶é’ˆ
 	{
 		if (average < 100)
 		{
@@ -774,7 +774,7 @@ enno_result RoomLightDimWidget::light_dim(char *buf_in, uint32 len_buf)
 #if 0
 	for (i = 0; i < i_light_num; i++)
 	{
-		if (!step)//Ë³Ê±Õë
+		if (!step)//é¡ºæ—¶é’ˆ
 	   	{
 	        if (ast_dev[i].dim_value < 100)
 	        {
@@ -1016,8 +1016,8 @@ void RoomLightDimWidget::paintEvent(QPaintEvent *e)
 	
 	qDebug()<<"paint cv="<<current_value;	
 
-	QRect target(116.0, 160.0, 101.0, 101.0); //½¨Á¢Ä¿±ê¾ØÐÎ£¬¸ÃÇøÓòÊÇÏÔÊ¾Í¼ÏñµÄÄ¿µÄµØ
-	QRect source(0.0, 0.0, 101.0, 101.0); //½¨Á¢Ô´¾ØÐÎ£¬ÓÃÀ´»®¶¨À´×ÔÍâ²¿µÄÔ´Í¼ÏñÎÄ¼þÖÐÐèÒªÏÔÊ¾µÄÇøÓò
+	QRect target(116.0, 160.0, 101.0, 101.0); //å»ºç«‹ç›®æ ‡çŸ©å½¢ï¼Œè¯¥åŒºåŸŸæ˜¯æ˜¾ç¤ºå›¾åƒçš„ç›®çš„åœ°
+	QRect source(0.0, 0.0, 101.0, 101.0); //å»ºç«‹æºçŸ©å½¢ï¼Œç”¨æ¥åˆ’å®šæ¥è‡ªå¤–éƒ¨çš„æºå›¾åƒæ–‡ä»¶ä¸­éœ€è¦æ˜¾ç¤ºçš„åŒºåŸŸ
 
     m_alpha = current_value;
 	paint_value = current_value;
@@ -1033,7 +1033,7 @@ void RoomLightDimWidget::paintEvent(QPaintEvent *e)
 
 	paintSide(&painter);
 	paintOutE(&painter);
-	//paintValue(&painter);//»æÖÆvalue¶ÔÓ¦µÄÌî³ä½Ç¶È
+	//paintValue(&painter);//ç»˜åˆ¶valueå¯¹åº”çš„å¡«å……è§’åº¦
 
 	radiusWidth = 30;
 	shadowWidth = 10;
@@ -1068,7 +1068,7 @@ void RoomLightDimWidget::paintEvent(QPaintEvent *e)
 	painter.setPen(pen1);
 	
 	QRectF rect(15, 15, 290, 290); //x,y,w,h  
-    int spanAngle = 90 * 16; //ÖµÎª£¬Êµ¼Ê½Ç¶È * 16  
+    int spanAngle = 90 * 16; //å€¼ä¸ºï¼Œå®žé™…è§’åº¦ * 16  
     d_val = average;
 	qDebug()<<"d_val="<<d_val<<", dm="<<average;
     int startAngle = (d_val / 100.0) * 360.0;  
@@ -1108,7 +1108,7 @@ void RoomLightDimWidget::paintEvent(QPaintEvent *e)
 		qDebug()<<"2val="<<d_val<<", start="<<startAngle<<",end="<<360;
 	}
 #endif      
-    //Èý¸ö²ÎÊý£ºrect±íÊ¾»¡ÏßËùÔÚµÄ¾ØÐÎ£¬startAngleÆðÊ¼½Ç¶È£¬spanAngle¿çÔ½½Ç¶È  
+    //ä¸‰ä¸ªå‚æ•°ï¼šrectè¡¨ç¤ºå¼§çº¿æ‰€åœ¨çš„çŸ©å½¢ï¼ŒstartAngleèµ·å§‹è§’åº¦ï¼ŒspanAngleè·¨è¶Šè§’åº¦  
     
 	/*if (average == 0)
 	{
@@ -1179,7 +1179,7 @@ void RoomLightDimWidget::drawArc(QPainter *painter, int radius)
     int maxRaidus = radius + shadowWidth;
     int minRadius = smallradius - shadowWidth;
 
-    //²ÉÓÃÔ²ÐÎ½¥±ä,ÐÎ³É¹âÔÎÐ§¹û
+    //é‡‡ç”¨åœ†å½¢æ¸å˜,å½¢æˆå…‰æ™•æ•ˆæžœ
     QRadialGradient radialGradient(QPointF(160, 160), maxRaidus);
     QColor color = shadowColor;
     QColor lightColor = shadowColor.lighter(100);
@@ -1201,7 +1201,7 @@ void RoomLightDimWidget::drawArc(QPainter *painter, int radius)
     //painter->drawPie(-maxRaidus, -maxRaidus, maxRaidus * 2, maxRaidus * 2, 270 * 16, angle * 16);
 	
 	QRectF rect(15, 15, 290, 290); //x,y,w,h  
-    int spanAngle = 90 * 16; //ÖµÎª£¬Êµ¼Ê½Ç¶È * 16  
+    int spanAngle = 90 * 16; //å€¼ä¸ºï¼Œå®žé™…è§’åº¦ * 16  
     d_val = current_value;
     int startAngle = (current_value / 100.0) * 360.0;  
 	int endAngle;
@@ -1275,7 +1275,7 @@ void RoomLightDimWidget::paintValue(QPainter *painter)
 		//painter.setPen(QPen(QColor(79,79,79,80)));
 	pen.setColor(QColor(240, 200, 0));
 
-    // pathÎªÉÈÐÎ subPathÎªÍÖÔ²
+    // pathä¸ºæ‰‡å½¢ subPathä¸ºæ¤­åœ†
     path -= subPath;
     painter->save();
     painter->setBrush(QColor(85, 85, 85, 30));

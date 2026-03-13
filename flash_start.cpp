@@ -11,8 +11,8 @@ FlashStartWidget::FlashStartWidget(QWidget *parent)
 	QSize pic_size(60,60);
 
 	this->setWindowFlags(Qt::FramelessWindowHint);
-	this->setMaximumSize(320,320);
-	this->setMinimumSize(320,320);	
+	this->setMaximumSize(OLED_PIX_X, OLED_PIX_Y);
+	this->setMinimumSize(OLED_PIX_X, OLED_PIX_Y);	
 	
 	label_gif = new QLabel(this);
 	movie_on = new QMovie(FLASH_FILE);
@@ -22,7 +22,7 @@ FlashStartWidget::FlashStartWidget(QWidget *parent)
 	connect(movie_on, SIGNAL(frameChanged(int)), this, SLOT(moveon_close())); 
 	movie_on->start();
     	
-	label_gif->setGeometry(QRect(0, 0, 320, 320));
+	label_gif->setGeometry(QRect(0, 0, OLED_PIX_X, OLED_PIX_Y));
 }
 
 void FlashStartWidget::moveon_close()
@@ -63,13 +63,13 @@ void FlashStartWidget::create_flash_file()
 FlashTextWidget::FlashTextWidget(QWidget *parent)
 {
 	this->setWindowFlags(Qt::FramelessWindowHint);
-	this->setMaximumSize(320,320);
-	this->setMinimumSize(320,320);	
+	this->setMaximumSize(OLED_PIX_X, OLED_PIX_Y);
+	this->setMinimumSize(OLED_PIX_X, OLED_PIX_Y);	
 
     label_txt = new QLabel(this);
 	label_txt->setText(tr("Welcome to use enno P2"));
 	//label_txt->setStyleSheet("font-size:50px;color: white;");	
-	//label_txt->setGeometry(QRect(0, 40, 320, 60*4)); //�ı��о� 
+	//label_txt->setGeometry(QRect(0, 40, 320, 60*4)); //ËÄ±¶ÐÐ¾à 
 	label_txt->setObjectName("start");
 	label_txt->setGeometry(QRect(0, 40, 320, 60*4));
 	label_txt->setWordWrap(true); 

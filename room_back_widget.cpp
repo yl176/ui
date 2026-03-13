@@ -21,8 +21,8 @@ void RoomBackWidget::showTheRoom(int index, QString room_name)
 	if (b)
 	{
 		QTextCodec::setCodecForLocale(QTextCodec::codecForName("GBK")); 
-		QString data = QString::fromLocal8Bit("回到") + elideNote;//??μ?êy?Y?a?Dμúi??×???μ??μ
-		//return_name_button->setText(QString::fromLocal8Bit("回到"));
+		QString data = QString::fromLocal8Bit("鍥炲埌") + elideNote;//??渭?锚y?Y?a?D渭煤i??脳???渭??渭
+		//return_name_button->setText(QString::fromLocal8Bit("鍥炲埌"));
 	   // room_name_button->setText(elideNote);//
 		return_name_button->setText(data);
 		//room_name_button->setText(" ");
@@ -51,7 +51,7 @@ RoomBackWidget::RoomBackWidget(QWidget *parent)
 
 	this->setWindowFlags(Qt::FramelessWindowHint);
 	this->setMaximumSize(640,320);
-	this->setMinimumSize(320,320);	
+	this->setMinimumSize(OLED_PIX_X, OLED_PIX_Y);	
 	
 	//right_center_function_widget = new QWidget(this);
 	//function_label = new QLabel();

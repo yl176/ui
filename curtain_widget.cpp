@@ -121,7 +121,7 @@ CurtainWidget::CurtainWidget(int room_id, TreeModel *model, QWidget *parent)
 
 	this->setWindowFlags(Qt::FramelessWindowHint);
 	this->setMaximumSize(640,320);
-	this->setMinimumSize(320,320);
+	this->setMinimumSize(OLED_PIX_X, OLED_PIX_Y);
 
 	content = new QWidget(this);
 	content->setFixedSize(320,306);
@@ -252,9 +252,9 @@ CurtainWidget::CurtainWidget(int room_id, TreeModel *model, QWidget *parent)
 		//no_curtain->setStyleSheet("font-size:30px;color: white;border-width:2px;border-style:solid;border-color:black;font-weight:bold;text-align:left;");
 		//no_curtain->setGeometry(QRect(0, 0, 320, 120));
 		no_curtain->setObjectName("noshade");
-		no_curtain->setGeometry(QRect(0, 80, 320, 60*4)); //4±∂––æ‡
-		no_curtain->setWordWrap(true);
-		no_curtain->setAlignment(Qt::AlignCenter);
+	wid_get[0]->setFixedSize(OLED_PIX_X*(page_num+2),306);
+		label_scene_onoff[i]->setGeometry(QRect(OLED_PIX_X*(i+1), 150, OLED_PIX_X, 60));
+		label_scene_name[i]->setGeometry(QRect(OLED_PIX_X*(i+1), 90, OLED_PIX_X, 60));
         return;
     }
     page_num = (i_curtain_num+3)/4;
@@ -369,8 +369,8 @@ CurtainWidget::CurtainWidget(int room_id, TreeModel *model, QWidget *parent)
 		tool_button->item_id = j;
 		if (i_curtain_num == 1)
 		{
-		    tool_button->setGeometry(QRect(95+320, 95+2, 130, 145));//130
-			tool_button->setLocalPos(95+320, 95+2);
+		    tool_button->setGeometry(QRect(95+OLED_PIX_X, 95+2, 130, 145));//130
+			tool_button->setLocalPos(95+OLED_PIX_X, 95+2);
 		}
 
 
@@ -378,7 +378,7 @@ CurtainWidget::CurtainWidget(int room_id, TreeModel *model, QWidget *parent)
 
 	wid_get[0]->show();
 	wid_get[0]->raise();
-	startx = -320;
+	startx = -OLED_PIX_X;
 	starty = 0;
 	wid_get[0]->move(startx, starty);
 
@@ -717,7 +717,7 @@ void CurtainWidget::shade_main_back()
 		
 		//QGraphicsBlurEffect *effect = new QGraphicsBlurEffect(this);
 		
-	//ƒ£∫˝÷µ£¨÷µ‘Ω¥Û‘Ωƒ£∫˝
+	//Ê®°Á≥äÂÄºÔºåÂÄºË∂äÂ§ßË∂äÊ®°Á≥ä
 	   // effect->setBlurRadius(0);
 			
 	    //tool_button->setGraphicsEffect(effect);
@@ -850,17 +850,17 @@ void CurtainWidget::turnIcon(QString current_icon)
 				if (ast_dev[i].m_name.size() <= 6)
 				{
 					str_name =  ast_dev[i].m_name;
-					label_scene_name[current_page]->setGeometry(QRect(320*(current_page+1), 90, 320, 60));
+					label_scene_name[current_page]->setGeometry(QRect(OLED_PIX_X*(current_page+1), 90, OLED_PIX_X, 60));
 				}
 				/*else if (ast_dev[i].m_name.size() > MIN_CHINESE_NAME_SIZE 
 					     && ast_dev[i].m_name.size() <= MID_CHINESE_NAME_SIZE)
 				{
 					str_name = ast_dev[i].m_name;
-					label_scene_name[current_page]->setGeometry(QRect(320*(current_page+1), 90, 320, 60));
+					label_scene_name[current_page]->setGeometry(QRect(OLED_PIX_X*(current_page+1), 90, OLED_PIX_X, 60));
 				}*/
 				else
 				{
-					label_scene_name[current_page]->setGeometry(QRect(320*(current_page+1), 90, 320, 60));
+					label_scene_name[current_page]->setGeometry(QRect(OLED_PIX_X*(current_page+1), 90, OLED_PIX_X, 60));
 					str_name = ast_dev[i].m_name.left(6) + QString("...");
 				}
 			}
@@ -869,17 +869,17 @@ void CurtainWidget::turnIcon(QString current_icon)
 				if (ast_dev[i].m_name.size() <= 11)
 				{
 					str_name = ast_dev[i].m_name;
-					label_scene_name[current_page]->setGeometry(QRect(320*(current_page+1), 90, 320, 60));
+					label_scene_name[current_page]->setGeometry(QRect(OLED_PIX_X*(current_page+1), 90, OLED_PIX_X, 60));
 				}
 				/*else if (ast_dev[i].m_name.size() <= 8)
 				{
 					str_name = ast_dev[i].m_name;
-					label_scene_name[current_page]->setGeometry(QRect(320*(current_page+1), 90, 320, 60));
+					label_scene_name[current_page]->setGeometry(QRect(OLED_PIX_X*(current_page+1), 90, OLED_PIX_X, 60));
 				}*/
 				else
 				{
 					str_name = ast_dev[i].m_name.left(11) + QString("...");
-					label_scene_name[current_page]->setGeometry(QRect(320*(current_page+1), 90, 320, 60));
+					label_scene_name[current_page]->setGeometry(QRect(OLED_PIX_X*(current_page+1), 90, OLED_PIX_X, 60));
 				}
 			}
 			label_scene_name[current_page]->setAlignment(Qt::AlignCenter | Qt::AlignBottom);
@@ -989,7 +989,7 @@ void CurtainWidget::turnIcon(QString current_icon)
 				}				
 			}
 
-		    //ƒ£∫˝÷µ£¨÷µ‘Ω¥Û‘Ωƒ£∫˝
+		    //Ê®°Á≥äÂÄºÔºåÂÄºË∂äÂ§ßË∂äÊ®°Á≥ä
 		    QGraphicsBlurEffect *effect = new QGraphicsBlurEffect(this);
 		    tool_button->setGraphicsEffect(effect);
 			tool_button->setIcon(QPixmap::fromImage(img));
@@ -1217,7 +1217,7 @@ void CurtainWidget::lightdim_to_shade_start()
 	button_list.at(current_index)->getLocalPos(&pos_x, &pos_y);
 	
 	//qDebug()<<"lightdim_to_scene_start,pos_x="<<pos_x<<",pos_y="<<pos_y;
-	anim->setKeyValueAt(0, QRect(80+320*(current_page+1), 80, SCENE_BUTTON_X+30, SCENE_BUTTON_Y+45));
+	anim->setKeyValueAt(0, QRect(80+OLED_PIX_X*(current_page+1), 80, SCENE_BUTTON_X+30, SCENE_BUTTON_Y+45));
 	anim->setKeyValueAt(1, QRect(pos_x, pos_y, SCENE_BUTTON_X+30, SCENE_BUTTON_Y+45));
 	//anim->setKeyValueAt(1, QRect(last_x, last_y, SCENE_BUTTON_X, SCENE_BUTTON_Y));
 	
@@ -1369,7 +1369,7 @@ void CurtainWidget::mousePressEvent(QMouseEvent *event)
 void CurtainWidget::curtaion_move_end()
 {
 	//	printf("current_uid=%d\r\n",current_uid);
-		wid_get[0]->move(startx-current_page*320, starty);
+		wid_get[0]->move(startx-current_page*OLED_PIX_X, starty);
 }
 
 
@@ -1444,8 +1444,8 @@ void CurtainWidget::mouseReleaseEvent(QMouseEvent *event)
 			group_move_widget->clear();
 
 			anim_r->setDuration(WIDGET_MOVE_TIME);
-			anim_r->setKeyValueAt(0, QRect(startx - offset -current_page*320, starty, 320, 320));
-			anim_r->setKeyValueAt(1, QRect(startx-current_page*320, starty, 320, 320));
+			anim_r->setKeyValueAt(0, QRect(startx - offset -current_page*OLED_PIX_X, starty, 320, 320));
+			anim_r->setKeyValueAt(1, QRect(startx-current_page*OLED_PIX_X, starty, 320, 320));
 
 			group_move_widget->addAnimation(anim_r);
 			//group_move_widget->addAnimation(anim_rb);
@@ -1466,8 +1466,8 @@ void CurtainWidget::mouseReleaseEvent(QMouseEvent *event)
 			group_move_widget->clear();
 
 			anim_l->setDuration(move_time);
-			anim_l->setKeyValueAt(0, QRect(startx - offset-current_page*320, starty, 320, 320));
-			anim_l->setKeyValueAt(1, QRect(startx-320-current_page*320, starty, 320, 320));
+			anim_l->setKeyValueAt(0, QRect(startx - offset-current_page*OLED_PIX_X, starty, 320, 320));
+			anim_l->setKeyValueAt(1, QRect(startx-OLED_PIX_X-current_page*OLED_PIX_X, starty, 320, 320));
 
 			group_move_widget->addAnimation(anim_l);
 			//group_move_widget->addAnimation(anim_ln);
@@ -1484,8 +1484,8 @@ void CurtainWidget::mouseReleaseEvent(QMouseEvent *event)
 			group_move_widget->clear();
 
 			anim_l->setDuration(move_time);
-			anim_l->setKeyValueAt(0, QRect(startx - offset-current_page*320, starty, 320, 320));
-			anim_l->setKeyValueAt(1, QRect(startx-current_page*320, starty, 320, 320));
+			anim_l->setKeyValueAt(0, QRect(startx - offset-current_page*OLED_PIX_X, starty, 320, 320));
+			anim_l->setKeyValueAt(1, QRect(startx-current_page*OLED_PIX_X, starty, 320, 320));
 
 			group_move_widget->addAnimation(anim_l);
 			//group_move_widget->addAnimation(anim_ln);
@@ -1509,8 +1509,8 @@ void CurtainWidget::mouseReleaseEvent(QMouseEvent *event)
 			group_move_widget->clear();
 
 			anim_l->setDuration(WIDGET_MOVE_TIME);
-			anim_l->setKeyValueAt(0, QRect(startx + offset - current_page*320, starty, 320, 320));
-			anim_l->setKeyValueAt(1, QRect(startx - current_page*320, starty, 320, 320));
+			anim_l->setKeyValueAt(0, QRect(startx + offset - current_page*OLED_PIX_X, starty, 320, 320));
+			anim_l->setKeyValueAt(1, QRect(startx - current_page*OLED_PIX_X, starty, 320, 320));
 
 			group_move_widget->addAnimation(anim_l);
 			//group_move_widget->addAnimation(anim_lb);
@@ -1530,8 +1530,8 @@ void CurtainWidget::mouseReleaseEvent(QMouseEvent *event)
 			group_move_widget->clear();
 
 			anim_r->setDuration(move_time);
-			anim_r->setKeyValueAt(0, QRect(startx + offset - current_page*320, starty, 320, 320));
-			anim_r->setKeyValueAt(1, QRect(startx+320 - current_page*320, starty, 320, 320));
+			anim_r->setKeyValueAt(0, QRect(startx + offset - current_page*OLED_PIX_X, starty, 320, 320));
+			anim_r->setKeyValueAt(1, QRect(startx+OLED_PIX_X - current_page*OLED_PIX_X, starty, 320, 320));
 
 			group_move_widget->addAnimation(anim_r);
 			//group_move_widget->addAnimation(anim_rn);
@@ -1549,8 +1549,8 @@ void CurtainWidget::mouseReleaseEvent(QMouseEvent *event)
 			group_move_widget->clear();
 
 			anim_r->setDuration(move_time);
-			anim_r->setKeyValueAt(0, QRect(startx + offset - current_page*320, starty, 320, 320));
-			anim_r->setKeyValueAt(1, QRect(startx - current_page*320, starty, 320, 320));
+			anim_r->setKeyValueAt(0, QRect(startx + offset - current_page*OLED_PIX_X, starty, 320, 320));
+			anim_r->setKeyValueAt(1, QRect(startx - current_page*OLED_PIX_X, starty, 320, 320));
 
 			group_move_widget->addAnimation(anim_r);
 			//group_move_widget->addAnimation(anim_rn);
@@ -1657,7 +1657,7 @@ void CurtainWidget::shade_pos_check()
 	last_x = button_list.at(current_index)->pos().x();
 	last_y = button_list.at(current_index)->pos().y();
 	anim->setKeyValueAt(0, QRect(last_x, last_y, SCENE_BUTTON_X, SCENE_BUTTON_Y));
-	anim->setKeyValueAt(1, QRect(80+320*(current_page+1), 80, SCENE_BUTTON_X, SCENE_BUTTON_Y));
+	anim->setKeyValueAt(1, QRect(80+OLED_PIX_X*(current_page+1), 80, SCENE_BUTTON_X, SCENE_BUTTON_Y));
 	//anim->setKeyValueAt(1, QRect(last_x, last_y, SCENE_BUTTON_X, SCENE_BUTTON_Y));
 	
 	group_light_anima->addAnimation(anim);
@@ -1934,13 +1934,13 @@ void CurtainWidget::mouseMoveEvent(QMouseEvent *event)
 		{
 			if(m_mouseSrcPos.x()-m_mouseDstPos.x() <=WIDGET_MOVE_OFFSET)
 			{
-				wid_get[0]->move(startx + m_mouseDstPos.x() - m_mouseSrcPos.x()- current_page*320 , starty);
+				wid_get[0]->move(startx + m_mouseDstPos.x() - m_mouseSrcPos.x()- current_page*OLED_PIX_X , starty);
 			}
 			else if((m_mouseSrcPos.x()-m_mouseDstPos.x() >WIDGET_MOVE_OFFSET)&&(m_mouseSrcPos.x()-m_mouseDstPos.x() <=2*WIDGET_MOVE_OFFSET))
 			{
 				speed = (150-0.5*(m_mouseSrcPos.x()-m_mouseDstPos.x()))/(m_mouseSrcPos.x()-m_mouseDstPos.x());
 				move_offset = 200-speed*(m_mouseSrcPos.x()-m_mouseDstPos.x());
-				wid_get[0]->move(startx - move_offset-current_page*320, starty);
+				wid_get[0]->move(startx - move_offset-current_page*OLED_PIX_X, starty);
 			}
 
 		}
@@ -1948,13 +1948,13 @@ void CurtainWidget::mouseMoveEvent(QMouseEvent *event)
 		{
 			if(m_mouseDstPos.x() - m_mouseSrcPos.x() <=WIDGET_MOVE_OFFSET)
 			{
-			    wid_get[0]->move(startx + current_page*320 + m_mouseDstPos.x() - m_mouseSrcPos.x(), starty);
+			    wid_get[0]->move(startx + current_page*OLED_PIX_X + m_mouseDstPos.x() - m_mouseSrcPos.x(), starty);
 			}
 			else if((m_mouseDstPos.x() - m_mouseSrcPos.x() >WIDGET_MOVE_OFFSET)&&(m_mouseDstPos.x() - m_mouseSrcPos.x() <=2*WIDGET_MOVE_OFFSET))
 			{
 				speed = (150-0.5*(m_mouseDstPos.x() - m_mouseSrcPos.x()))/(m_mouseDstPos.x() - m_mouseSrcPos.x());
 				move_offset = 200-speed*(m_mouseDstPos.x() - m_mouseSrcPos.x());
-			    wid_get[0]->move(startx + move_offset-current_page*320, starty);
+			    wid_get[0]->move(startx + move_offset-current_page*OLED_PIX_X, starty);
 			}
 		}
 
@@ -1963,11 +1963,11 @@ void CurtainWidget::mouseMoveEvent(QMouseEvent *event)
 	{
 		if ((current_page < next_page) && (m_mouseDstPos.x() <  m_mouseSrcPos.x()))//to left
 		{
-			wid_get[0]->move(startx + m_mouseDstPos.x() - m_mouseSrcPos.x() - current_page*320, starty);
+			wid_get[0]->move(startx + m_mouseDstPos.x() - m_mouseSrcPos.x() - current_page*OLED_PIX_X, starty);
 		}
 		else if ((current_page > next_page) && (m_mouseDstPos.x() >  m_mouseSrcPos.x()))//to right
 		{
-				wid_get[0]->move(startx + m_mouseDstPos.x() - m_mouseSrcPos.x() - current_page*320, starty);
+				wid_get[0]->move(startx + m_mouseDstPos.x() - m_mouseSrcPos.x() - current_page*OLED_PIX_X, starty);
 		}
 	}
 
@@ -1991,24 +1991,24 @@ void CurtainWidget::paintEvent(QPaintEvent *e)
 		QPainter paint(this);
         //qDebug()<<"cur_button=["<<cur_button<<"]"<<endl;
 		QPainter painter(&image1);	
-        //…Ë÷√ª≠À¢ƒ£ Ω
+        //ËÆæÁΩÆÁîªÂà∑Ê®°Âºè
 		painter.setCompositionMode(QPainter::CompositionMode_SourceIn);
-		//∏ƒ±‰ª≠± ∫Õ◊÷ÃÂ
+		//ÊîπÂèòÁîªÁ¨îÂíåÂ≠ó‰Ωì
 		QPen pen = painter.pen();
 		pen.setColor(Qt::white);
 		QFont font = painter.font();
-		font.setBold(false);//º”¥÷
-		font.setPixelSize(80);//∏ƒ±‰◊÷ÃÂ¥Û–°
+		font.setBold(false);//Âä†Á≤ó
+		font.setPixelSize(80);//ÊîπÂèòÂ≠ó‰ΩìÂ§ßÂ∞è
 		painter.setPen(pen);
 		painter.setFont(font);	
 
-		QRect target(30.0, -30.0, 261.0, 261.0); //Ω®¡¢ƒø±Íæÿ–Œ£¨∏√«¯”Ú «œ‘ æÕºœÒµƒƒøµƒµÿ
+		QRect target(30.0, -30.0, 261.0, 261.0); //Âª∫Á´ãÁõÆÊ†áÁü©ÂΩ¢ÔºåËØ•Âå∫ÂüüÊòØÊòæÁ§∫ÂõæÂÉèÁöÑÁõÆÁöÑÂú∞
 		//QRect target(0, 0, 261.0, 261.0);
-		QRect source(0.0, 0.0, 261.0, 261.0); //Ω®¡¢‘¥æÿ–Œ£¨”√¿¥ªÆ∂®¿¥◊‘Õ‚≤øµƒ‘¥ÕºœÒŒƒº˛÷––Ë“™œ‘ æµƒ«¯”Ú
+		QRect source(0.0, 0.0, 261.0, 261.0); //Âª∫Á´ãÊ∫êÁü©ÂΩ¢ÔºåÁî®Êù•ÂàíÂÆöÊù•Ëá™Â§ñÈÉ®ÁöÑÊ∫êÂõæÂÉèÊñá‰ª∂‰∏≠ÈúÄË¶ÅÊòæÁ§∫ÁöÑÂå∫Âüü
 		//QRect target(30.0, -30.0, 320.0, 320.0);
 		//QRect source(0.0, 0.0, 320.0, 320.0);
 
-		//Ω´Œƒ◊÷ªÊ÷∆‘⁄Õº∆¨÷––ƒŒª÷√
+		//Â∞ÜÊñáÂ≠óÁªòÂà∂Âú®ÂõæÁâá‰∏≠ÂøÉ‰ΩçÁΩÆ
 		QString str;
 		str.sprintf("%d%", set_pos);
 		painter.drawText(image1.rect(), Qt::AlignCenter, str);
@@ -2021,7 +2021,7 @@ void CurtainWidget::paintEvent(QPaintEvent *e)
 	}
 	else if (!right_mouse_press)
 	{
-		QPainter painter(this);             // ¥¥Ω®QPainter“ª∏ˆ∂‘œÛ
+		QPainter painter(this);             // ÂàõÂª∫QPainter‰∏Ä‰∏™ÂØπË±°
 	    QPen pen;
 		int start_pos = 0;
 		int current_point_x = 0;
@@ -2038,9 +2038,9 @@ void CurtainWidget::paintEvent(QPaintEvent *e)
 		    	//printf("TODO:\r\n");
 		    	return;
 		    }
-		    pen.setColor(Qt::gray);           // …Ë÷√ª≠± Œ™ª∆…´
+		    pen.setColor(Qt::gray);           // ËÆæÁΩÆÁîªÁ¨î‰∏∫ÈªÑËâ≤
 		    pen.setWidth(1);
-		    painter.setPen(pen);                // …Ë÷√ª≠± 
+		    painter.setPen(pen);                // ËÆæÁΩÆÁîªÁ¨î
 
 		    // QPointF pointf[20];
 		   QPoint pointC;
@@ -2050,36 +2050,36 @@ void CurtainWidget::paintEvent(QPaintEvent *e)
 		    {
 		    	if (i ==  current_page)
 				{
-					painter.setPen(QPen(Qt::white, 6));//…Ë÷√ª≠± –Œ Ω
+					painter.setPen(QPen(Qt::white, 6));//ËÆæÁΩÆÁîªÁ¨îÂΩ¢Âºè
 					painter.setBrush(Qt::white);
-					painter.drawEllipse(current_point_x-17, 309, 6, 6);//ª≠‘≤
+					painter.drawEllipse(current_point_x-17, 309, 6, 6);//ÁîªÂúÜ
 					painter.drawRect(QRect(current_point_x-12, 309, 20, 6));
-					painter.drawEllipse(current_point_x+5, 309, 6, 6);//ª≠‘≤
+					painter.drawEllipse(current_point_x+5, 309, 6, 6);//ÁîªÂúÜ
 				}
 		    	else if (i<current_page)
 		    	{
-					painter.setPen(QPen(Qt::gray, 6));//…Ë÷√ª≠± –Œ Ω
+					painter.setPen(QPen(Qt::gray, 6));//ËÆæÁΩÆÁîªÁ¨îÂΩ¢Âºè
 					painter.setBrush(Qt::gray);
 		    		if (i==current_page-1)
 		    		{
-		    			painter.drawEllipse(current_point_x-44, 309, 6, 6);//ª≠‘≤
+		    			painter.drawEllipse(current_point_x-44, 309, 6, 6);//ÁîªÂúÜ
 		    		}
 		    		else
 		    		{
-		    			painter.drawEllipse(current_point_x-(44+32*(current_page-i-1)), 309, 6, 6);//ª≠‘≤
+		    			painter.drawEllipse(current_point_x-(44+32*(current_page-i-1)), 309, 6, 6);//ÁîªÂúÜ
 		    		}
 		    	}
 		    	else if (i>current_page)
 				{
-					painter.setPen(QPen(Qt::gray, 6));//…Ë÷√ª≠± –Œ Ω
+					painter.setPen(QPen(Qt::gray, 6));//ËÆæÁΩÆÁîªÁ¨îÂΩ¢Âºè
 					painter.setBrush(Qt::gray);
 					if (i==current_page+1)
 					{
-						painter.drawEllipse(current_point_x+32, 309, 6, 6);//ª≠‘≤
+						painter.drawEllipse(current_point_x+32, 309, 6, 6);//ÁîªÂúÜ
 					}
 					else
 					{
-						painter.drawEllipse(current_point_x+(32+32*(i-current_page-1)), 309, 6, 6);//ª≠‘≤
+						painter.drawEllipse(current_point_x+(32+32*(i-current_page-1)), 309, 6, 6);//ÁîªÂúÜ
 					}
 				}
 		    }

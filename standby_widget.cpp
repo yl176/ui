@@ -44,7 +44,7 @@ void StandbyUpWidget::gettime()
 {
 	time_t tNow =time(NULL);  
 	time_t tEnd = tNow + 1800;  
-	//×¢ÒâÏÂÃæÁ½ÐÐµÄÇø±ð  
+	//æ³¨æ„ä¸‹é¢ä¸¤è¡Œçš„åŒºåˆ«  
 	struct tm* ptm = localtime(&tNow);  
 
 	strftime(g_szTmp, 50, "%H:%M", ptm);  
@@ -704,8 +704,8 @@ void StandbyUpWidget::update_color()
 StandbyUpWidget::StandbyUpWidget(QWidget *parent)
 {
 	this->setWindowFlags(Qt::FramelessWindowHint);
-	this->setMaximumSize(320,320);
-	this->setMinimumSize(320,320);
+	this->setMaximumSize(OLED_PIX_X, OLED_PIX_Y);
+	this->setMinimumSize(OLED_PIX_X, OLED_PIX_Y);
 
 	label_time_hour = new QLabel(this);
 	label_time_hour->setText("09:");
@@ -949,27 +949,27 @@ QString StandbyWidget::get_aqi_style(int valAqi)
 	QString strFont = "font-size:36px;";
 	QString strStyle;
 	//qDebug()<<"TitleWidget::paintEvent";
-	if (valAqi < 50)//0~50 Á¼ºÃ//
+	if (valAqi < 50)//0~50 è‰¯å¥½//
 	{
 	    strColor = "color:rgb(98,219,64);";
 	}
-	else if (valAqi < 100)//51~100 ÖÐµÈ //
+	else if (valAqi < 100)//51~100 ä¸­ç­‰ //
 	{
 		strColor = "color:rgb(252,238,33);";
 	}
-	else if (valAqi < 150)//101~150 ¶ÔÃô¸ÐÈËÈºÓÐº¦ //
+	else if (valAqi < 150)//101~150 å¯¹æ•æ„Ÿäººç¾¤æœ‰å®³ //
 	{
 		strColor = "color:rgb(247,147,30);";
 	}
-	else if (valAqi < 200)//151~200 ²»½¡¿µ //
+	else if (valAqi < 200)//151~200 ä¸å¥åº· //
 	{
 		strColor = "color:rgb(255,61,16);";
 	}
-	else if (valAqi < 300)//201~300 ¼«²»½¡¿µ //
+	else if (valAqi < 300)//201~300 æžä¸å¥åº· //
 	{
 		strColor = "color:rgb(175,50,186);";
 	}
-	else if (valAqi)//301~500 ÓÐ¶¾º¦ //
+	else if (valAqi)//301~500 æœ‰æ¯’å®³ //
 	{
 		strColor = "color:rgb(149,12,50);";
 	}
@@ -1258,8 +1258,8 @@ void StandbyWidget::outdoor_info_data_set()
 StandbyWidget::StandbyWidget(QWidget *parent)
 {
 	this->setWindowFlags(Qt::FramelessWindowHint);
-	this->setMaximumSize(320,320);
-	this->setMinimumSize(320,320);
+	this->setMaximumSize(OLED_PIX_X, OLED_PIX_Y);
+	this->setMinimumSize(OLED_PIX_X, OLED_PIX_Y);
 	
 	//right_center_function_widget = new QWidget(this);
 	//function_label = new QLabel();
@@ -1277,7 +1277,7 @@ StandbyWidget::StandbyWidget(QWidget *parent)
 	label_open_font->setStyleSheet("font-size:30px;color:rgb(255,255,255);" \
 				"text-align:left;font-weight:440;"\
 				"background-color:rgb(0,0,0);");
-	label_open_font->setGeometry(QRect(0, 145, 320, 50));
+	label_open_font->setGeometry(QRect(0, 145, OLED_PIX_X, 50));
 
     open_widget = new QWidget(this);
     open_widget->setFixedSize(320,115);
@@ -1334,7 +1334,7 @@ StandbyWidget::StandbyWidget(QWidget *parent)
 	label_weather = new QLabel(this);
 	label_weather->setGeometry(QRect(0, 0, 162, 132));
 
-    //·µ»ØÌìÆø¶ÔÓ¦µÄcode£¬1:Ñ©,2:Óê,3:·ç±©,4:Çç,5:Îí,6:¶àÔÆ,7:Óê¼ÐÑ©
+    //è¿”å›žå¤©æ°”å¯¹åº”çš„codeï¼Œ1:é›ª,2:é›¨,3:é£Žæš´,4:æ™´,5:é›¾,6:å¤šäº‘,7:é›¨å¤¹é›ª
 	QPixmap pixmap_weather("standby/weather/weather6");
 	label_weather->setPixmap(pixmap_weather);
 
@@ -1753,9 +1753,9 @@ void StandbyWidget::get_dev_open_notify(char *value, uint32 len_buf)
 			anim1->setKeyValueAt(0, QRect(0, 7, 60, 60));
 			anim1->setKeyValueAt(sta_time/total_time, QRect(0, 7, 60, 60));
 			
-			anim1->setKeyValueAt((sta_time+mov_time)/total_time, QRect(-320, 7, 60, 60));
+			anim1->setKeyValueAt((sta_time+mov_time)/total_time, QRect(-OLED_PIX_X, 7, 60, 60));
 		
-			anim1->setKeyValueAt((2*sta_time+mov_time)/total_time, QRect(-320, 7, 60, 60));
+			anim1->setKeyValueAt((2*sta_time+mov_time)/total_time, QRect(-OLED_PIX_X, 7, 60, 60));
 
             if (dnum == 3)
             {
@@ -1789,8 +1789,8 @@ void StandbyWidget::get_dev_open_notify(char *value, uint32 len_buf)
 				anim2->setKeyValueAt((3*sta_time+3*mov_time)/total_time, QRect(0, 7, 60, 60));
 				anim2->setKeyValueAt((4*sta_time+3*mov_time)/total_time, QRect(0, 7, 60, 60));
 
-				anim2->setKeyValueAt((4*sta_time+4*mov_time)/total_time, QRect(-320, 7, 60, 60));
-				anim2->setKeyValueAt((5*sta_time+4*mov_time)/total_time, QRect(-320, 7, 60, 60));
+				anim2->setKeyValueAt((4*sta_time+4*mov_time)/total_time, QRect(-OLED_PIX_X, 7, 60, 60));
+				anim2->setKeyValueAt((5*sta_time+4*mov_time)/total_time, QRect(-OLED_PIX_X, 7, 60, 60));
 
 				anim2->setKeyValueAt((5*sta_time+5*mov_time)/total_time, QRect(-640, 7, 60, 60));
 				anim2->setKeyValueAt((6*sta_time+5*mov_time)/total_time, QRect(-640, 7, 60, 60));
@@ -1808,8 +1808,8 @@ void StandbyWidget::get_dev_open_notify(char *value, uint32 len_buf)
 				anim2->setKeyValueAt((2*sta_time+2*mov_time)/total_time, QRect(0, 7, 60, 60));
 				anim2->setKeyValueAt((3*sta_time+2*mov_time)/total_time, QRect(0, 7, 60, 60));
 
-				anim2->setKeyValueAt((3*sta_time+3*mov_time)/total_time, QRect(-320, 7, 60, 60));
-				anim2->setKeyValueAt((4*sta_time+3*mov_time)/total_time, QRect(-320, 7, 60, 60));
+				anim2->setKeyValueAt((3*sta_time+3*mov_time)/total_time, QRect(-OLED_PIX_X, 7, 60, 60));
+				anim2->setKeyValueAt((4*sta_time+3*mov_time)/total_time, QRect(-OLED_PIX_X, 7, 60, 60));
 				
 				anim2->setKeyValueAt((4*sta_time+4*mov_time-0.3)/total_time, QRect(-640, 7, 60, 60));
 				anim2->setKeyValueAt((4*sta_time+4*mov_time-0.2)/total_time, QRect(-640, 7+300, 60, 60));

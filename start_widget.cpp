@@ -26,8 +26,8 @@ void StartWidget::TimerTimeOut()
 StartWidget::StartWidget(QWidget *parent)
 {
 	this->setWindowFlags(Qt::FramelessWindowHint);
-	this->setMaximumSize(320,320);
-	this->setMinimumSize(320,320);
+	this->setMaximumSize(OLED_PIX_X, OLED_PIX_Y);
+	this->setMinimumSize(OLED_PIX_X, OLED_PIX_Y);
 	
 	m_timer = new QTimer(this);
     connect(m_timer, SIGNAL(timeout()), this, SLOT(TimerTimeOut()));
@@ -41,7 +41,7 @@ StartWidget::StartWidget(QWidget *parent)
 	//no_curtain->setStyleSheet("font-size:30px;color: white;border-width:2px;border-style:solid;border-color:black;font-weight:bold;text-align:left;");
 	//no_curtain->setGeometry(QRect(0, 0, 320, 120));
 	please_label->setObjectName("start");
-	please_label->setGeometry(QRect(0, 80, 320, 60*4)); //�ı��о� 
+	please_label->setGeometry(QRect(0, 80, 320, 60*4)); //ËÄ±¶ÐÐ¾à 
 	please_label->setWordWrap(true); 
 	please_label->setAlignment(Qt::AlignTop); 
 
@@ -97,8 +97,8 @@ void StartTitleWidget::translateLanguage()
 StartTitleWidget::StartTitleWidget(QWidget *parent)
 {
 	this->setWindowFlags(Qt::FramelessWindowHint);
-	this->setMaximumSize(320,320);
-	this->setMinimumSize(320,320);
+	this->setMaximumSize(OLED_PIX_X, OLED_PIX_Y);
+	this->setMinimumSize(OLED_PIX_X, OLED_PIX_Y);
 }
 
 /*void MainWidget::showWidget()

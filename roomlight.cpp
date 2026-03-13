@@ -24,8 +24,8 @@ RoomLightWidget::RoomLightWidget(int room_id, TreeModel *model, QWidget *parent)
 	int j;
 
 	this->setWindowFlags(Qt::FramelessWindowHint);
-	this->setMaximumSize(320,320);
-	this->setMinimumSize(320,320);
+	this->setMaximumSize(OLED_PIX_X, OLED_PIX_Y);
+	this->setMinimumSize(OLED_PIX_X, OLED_PIX_Y);
 
 	i_light_cnt = 0;
 	i_light_num = 0;
@@ -385,8 +385,8 @@ void RoomLightWidget::lighton_press()
 	img_label_back->setFixedSize(LIGHT_IMG_SIZE,LIGHT_IMG_SIZE);
 	img_label_back->setGeometry(QRect(90, 70, LIGHT_IMG_SIZE, LIGHT_IMG_SIZE));
 #endif
-	//img_label->setFixedSize(320,320);
-	//img_label->setGeometry(QRect(0, 0, 320, 320));
+	//img_label->setFixedSize(OLED_PIX_X, OLED_PIX_Y);
+	//img_label->setGeometry(QRect(0, 0, OLED_PIX_X, OLED_PIX_Y));
 //	QTimer::singleShot(2000, this, SLOT(lighton_close()));
 #if 0
     QMovie *movie = new QMovie("roomlight/lighton_gif");
@@ -434,8 +434,8 @@ void RoomLightWidget::lighton()
 	img_label_back->setFixedSize(LIGHT_IMG_SIZE,LIGHT_IMG_SIZE);
 	img_label_back->setGeometry(QRect(90, 70, LIGHT_IMG_SIZE, LIGHT_IMG_SIZE));
 #endif
-	//img_label->setFixedSize(320,320);
-	//img_label->setGeometry(QRect(0, 0, 320, 320));
+	//img_label->setFixedSize(OLED_PIX_X, OLED_PIX_Y);
+	//img_label->setGeometry(QRect(0, 0, OLED_PIX_X, OLED_PIX_Y));
 //	QTimer::singleShot(2000, this, SLOT(lighton_close()));
 #if 0
     QMovie *movie = new QMovie("roomlight/lighton_gif");
@@ -687,8 +687,8 @@ void RoomLightWidget::lightoff()
 	img_label_back->setGeometry(QRect(90, 70, LIGHT_IMG_SIZE, LIGHT_IMG_SIZE));
 	qDebug()<<"room="<<g_current_room<<", light_num="<<i_light_num;
 #endif
-	//img_label->setFixedSize(320,320);
-	//img_label->setGeometry(QRect(0, 0, 320, 320));
+	//img_label->setFixedSize(OLED_PIX_X, OLED_PIX_Y);
+	//img_label->setGeometry(QRect(0, 0, OLED_PIX_X, OLED_PIX_Y));
 //	QTimer::singleShot(2000, this, SLOT(lightoff_close()));
 
 #if 0
@@ -955,11 +955,11 @@ void RoomLightWidget::changeLanguage()
         translator->load(QString("qwid_zh_CN.qm"));
     }
 	else
-	{
-        translator->load(QString("qwid_zh_en.qm"));
-	}
+	this->setMaximumSize(OLED_PIX_X, OLED_PIX_Y);
+	this->setMinimumSize(OLED_PIX_X, OLED_PIX_Y);
+	//labelText->setGeometry(QRect(0, 0, OLED_PIX_X, 100));
 
-	this->translateLanguage();
+	perBar->setGeometry(QRect(0, 142, OLED_PIX_X, 18));
 }
 
 
@@ -988,7 +988,7 @@ RoomLightTextWidget::RoomLightTextWidget(QWidget *parent)
 	//labelText->setGeometry(QRect(0, 0, 320, 100));
 	labelText->setStyleSheet("font-size:40px;font-weight:440;color:rgb(255,255, 255);text-align:center;background:transparent;");
 	//labelText->setAlignment(Qt::AlignCenter | Qt::AlignBottom);
-	labelText->setGeometry(QRect(0, 0, 320, 60*2)); //�ı��о� 
+	labelText->setGeometry(QRect(0, 0, 320, 60*2)); //ËÄ±¶ÐÐ¾à 
 	labelText->setWordWrap(true); 
 	labelText->setAlignment(Qt::AlignCenter); 
 

@@ -165,8 +165,8 @@ qDebug() << "[UI] file=" << __FILE__ << ",line=" << __LINE__ << ",idx=" << curre
 SetWidget::SetWidget(QWidget *parent)
 {
 	this->setWindowFlags(Qt::FramelessWindowHint);
-	//this->setMaximumSize(320,320);
-	//this->setMinimumSize(320,320);
+	//this->setMaximumSize(OLED_PIX_X, OLED_PIX_Y);
+	//this->setMinimumSize(OLED_PIX_X, OLED_PIX_Y);
 	QStringList string_list;
     //4+4+2+1.    
     string_list<<"Network Fix"<<"Dali Address"<<"Factory Reset"<<"ETS Programe Set"\
@@ -1549,8 +1549,8 @@ void SetAboutWidget::on_pbtn_2_clicked()
 SetAboutWidget::SetAboutWidget(QWidget *parent)
 {
 	this->setWindowFlags(Qt::FramelessWindowHint);
-	this->setMaximumSize(320,320);
-	this->setMinimumSize(320,320);
+	this->setMaximumSize(OLED_PIX_X, OLED_PIX_Y);
+	this->setMinimumSize(OLED_PIX_X, OLED_PIX_Y);
 	QStringList string_list;
 	string_list<<"ID: 1234-1234-1234-1234";//<<"network: connect";
 		//<<"Version: 01A01W01"<<"Setup Code: 11-222-33";
@@ -1652,8 +1652,8 @@ SetAboutWidget::SetAboutWidget(QWidget *parent)
                 "text-align:center;background-color:rgb(85,85,85);border-radius:35px;");//font-weight:bold;
     netfix_status->setStyleSheet("font-size:30px;color:white;" \
                 "text-align:left;background-color:black;");
-    netfix_title->setGeometry(QRect(0, 0, 320, 40));
-    netfix_yes->setGeometry(QRect(0, 180, 320, UP_SET_BTN_HEIGHT));
+    netfix_title->setGeometry(QRect(0, 0, OLED_PIX_X, 40));
+    netfix_yes->setGeometry(QRect(0, 180, OLED_PIX_X, UP_SET_BTN_HEIGHT));
     netfix_status->setGeometry(QRect(160, 126, 160, 40));
 	netfix_status->setVisible(1);
     netfix_yes->setVisible(true);
@@ -1662,7 +1662,7 @@ SetAboutWidget::SetAboutWidget(QWidget *parent)
 	netfix_status->setObjectName("setAboutLabel");
 
     labelNetworkName = new QLabel(strNetworkName,wid_netfix);
-    labelNetworkName->setGeometry(QRect(0, 42, 320, 40));
+    labelNetworkName->setGeometry(QRect(0, 42, OLED_PIX_X, 40));
     //labelNetworkName->setStyleSheet("font-size:25px;color:white;" \
     //            "text-align:left;background-color:black;");
 	labelNetworkName->setObjectName("setAboutLabel");
@@ -1740,8 +1740,8 @@ SetAboutWidget::SetAboutWidget(QWidget *parent)
 
 
 
-	dali_addr_set_title->setGeometry(QRect(0, 0, 320, 40));
-    dali_addr_set_status->setGeometry(QRect(0, 50, 320, 40));
+	dali_addr_set_title->setGeometry(QRect(0, 0, OLED_PIX_X, 40));
+    dali_addr_set_status->setGeometry(QRect(0, 50, OLED_PIX_X, 40));
     dali_addr_set_status->setVisible(0);
     connect(dali_1_all, SIGNAL(clicked()), this, SLOT(dali_1_all_Clicked()));
 
@@ -1763,9 +1763,9 @@ SetAboutWidget::SetAboutWidget(QWidget *parent)
     //fac_status->setStyleSheet("font-size:25px;color:white;" \
     //            "text-align:left;background-color:black;");
 	fac_status->setObjectName("setAboutLabel");
-    fac_title->setGeometry(QRect(0, 0, 320, 40));
-    fac_yes->setGeometry(QRect(0, 164, 320, UP_SET_BTN_HEIGHT));
-    fac_status->setGeometry(QRect(0, 82, 320, 40));
+    fac_title->setGeometry(QRect(0, 0, OLED_PIX_X, 40));
+    fac_yes->setGeometry(QRect(0, 164, OLED_PIX_X, UP_SET_BTN_HEIGHT));
+    fac_status->setGeometry(QRect(0, 82, OLED_PIX_X, 40));
 	fac_status->setVisible(0);
 
     label_devid->setParent(wid_facreset);
@@ -1785,7 +1785,7 @@ SetAboutWidget::SetAboutWidget(QWidget *parent)
     //ets_title->setStyleSheet("font-size:25px;color:white;" \
     //            "text-align:left;background-color:black;");
 	ets_title->setObjectName("setAboutLabel");
-    ets_title->setGeometry(QRect(0, 120, 320, 40));
+    ets_title->setGeometry(QRect(0, 120, OLED_PIX_X, 40));
     program_button->setGeometry(QRect(10, 164, 140, UP_SET_BTN_HEIGHT));
     log_button->setGeometry(QRect(171, 164, 140, UP_SET_BTN_HEIGHT));
     connect(program_button, SIGNAL(clicked()), this, SLOT(programClicked()));
@@ -1809,11 +1809,11 @@ SetAboutWidget::SetAboutWidget(QWidget *parent)
 
    // set_status->setStyleSheet("font-size:30px;color:white;" \
    //             "text-align:center;background-color:rgb(85,85,85);border-radius:35px;font-weight:bold;");
-    bootmode_title->setGeometry(QRect(0, 120, 320, 40));
+    bootmode_title->setGeometry(QRect(0, 120, OLED_PIX_X, 40));
 	//setcode_yes->setGeometry(QRect(200, 20, 80, UP_SET_BTN_HEIGHT));
 	ios_button->setGeometry(QRect(10, 164, 140, UP_SET_BTN_HEIGHT));
     and_button->setGeometry(QRect(171, 164, 140, UP_SET_BTN_HEIGHT));
-  //  set_status->setGeometry(QRect(0, 164, 320, UP_SET_BTN_HEIGHT));
+  //  set_status->setGeometry(QRect(0, 164, OLED_PIX_X, UP_SET_BTN_HEIGHT));
     //set_status->setVisible(1);
   //  set_status->setAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
    // setcode_yes->setVisible(false);
@@ -1841,10 +1841,10 @@ SetAboutWidget::SetAboutWidget(QWidget *parent)
     language_title->setStyleSheet("font-size:25px;color:white;" \
 				"text-align:left;background-color:black;");
 	language_title->setObjectName("setAboutLabel");
-    language_title->setGeometry(QRect(0, 0, 320, 30));
-    english_button->setGeometry(QRect(0, 60, 320, UP_SET_BTN_HEIGHT));
-    chinese_button->setGeometry(QRect(0, 140, 320, UP_SET_BTN_HEIGHT));
-	tr_cn_button->setGeometry(QRect(0, 220, 320, UP_SET_BTN_HEIGHT));
+    language_title->setGeometry(QRect(0, 0, OLED_PIX_X, 30));
+    english_button->setGeometry(QRect(0, 60, OLED_PIX_X, UP_SET_BTN_HEIGHT));
+    chinese_button->setGeometry(QRect(0, 140, OLED_PIX_X, UP_SET_BTN_HEIGHT));
+	tr_cn_button->setGeometry(QRect(0, 220, OLED_PIX_X, UP_SET_BTN_HEIGHT));
     connect(chinese_button, SIGNAL(clicked()), this, SLOT(chineseClicked()));
     connect(english_button, SIGNAL(clicked()), this, SLOT(englishClicked()));
     connect(tr_cn_button, SIGNAL(clicked()), this, SLOT(trcnClicked()));
@@ -1862,8 +1862,8 @@ SetAboutWidget::SetAboutWidget(QWidget *parent)
     model_status->setObjectName("setAboutLabel");
 	version_status->setObjectName("setAboutLabel");
     about_title->setGeometry(QRect(0, 0, 160, 40));
-    model_status->setGeometry(QRect(0, 84, 320, 40));
-    version_status->setGeometry(QRect(0, 124, 320, 40));
+    model_status->setGeometry(QRect(0, 84, OLED_PIX_X, 40));
+    version_status->setGeometry(QRect(0, 124, OLED_PIX_X, 40));
     about_title->setVisible(false);
 
 
@@ -1880,7 +1880,7 @@ SetAboutWidget::SetAboutWidget(QWidget *parent)
     //language_title->setStyleSheet("font-size:25px;color:white;" \
 	//			"text-align:left;background-color:black;");
 	net_wac_title->setObjectName("setAboutLabel");
-    net_wac_title->setGeometry(QRect(0, 0, 320, 40));
+    net_wac_title->setGeometry(QRect(0, 0, OLED_PIX_X, 40));
     wac_button->setGeometry(QRect(10, 164, 140, UP_SET_BTN_HEIGHT));
     reboot_button->setGeometry(QRect(171, 164, 140, UP_SET_BTN_HEIGHT));
     connect(wac_button, SIGNAL(clicked()), this, SLOT(wacClicked()));
@@ -1931,11 +1931,11 @@ SetAboutWidget::SetAboutWidget(QWidget *parent)
     //language_title->setStyleSheet("font-size:25px;color:white;" \
 	//			"text-align:left;background-color:black;");
 	identify_title->setObjectName("setAboutLabel");
-    identify_title->setGeometry(QRect(0, 0, 320, 40));
+    identify_title->setGeometry(QRect(0, 0, OLED_PIX_X, 40));
 
     identify_status = new QLabel(tr("current identify id: "), wid_lights_identify);
 	identify_status->setObjectName("setAboutLabel");
-	identify_status->setGeometry(QRect(0, 50, 320, 40));
+	identify_status->setGeometry(QRect(0, 50, OLED_PIX_X, 40));
     identify_status->setVisible(0);
 
 
@@ -1963,12 +1963,12 @@ SetAboutWidget::SetAboutWidget(QWidget *parent)
 	
     dali_reconfiguration_title = new QLabel(tr("dali reconfiguration"), wid_dali_reconfiguration); 
 	dali_reconfiguration_title->setObjectName("setAboutLabel");
-    dali_reconfiguration_title->setGeometry(QRect(0, 0, 320, 40));
+    dali_reconfiguration_title->setGeometry(QRect(0, 0, OLED_PIX_X, 40));
 
 
     reconfiguration_status = new QLabel(tr("send ok! Wait one minute"), wid_dali_reconfiguration);
 	reconfiguration_status->setObjectName("setAboutLabel");
-	reconfiguration_status->setGeometry(QRect(0, 50, 320, 40));
+	reconfiguration_status->setGeometry(QRect(0, 50, OLED_PIX_X, 40));
     reconfiguration_status->setVisible(0);
 
 	dali_reconfiguration_button->setGeometry(QRect(0, 100, 150, 60));
@@ -2080,8 +2080,8 @@ SetAboutWidget::SetAboutWidget(QWidget *parent)
     pbtn_2->setStyleSheet("font-size:30px;color:white;" \
                     "text-align:center;background-color:rgb(85,85,85);border-radius:30px;");
     //
-    label_1->setGeometry(QRect(0, 0, 320, 40));
-    label_2->setGeometry(QRect(0, 50, 320, 40));
+    label_1->setGeometry(QRect(0, 0, OLED_PIX_X, 40));
+    label_2->setGeometry(QRect(0, 50, OLED_PIX_X, 40));
     pbtn_1->setGeometry(QRect(1, 130, 140, 60));
     pbtn_2->setGeometry(QRect(180, 130, 140, 60));
     //

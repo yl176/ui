@@ -43,8 +43,8 @@ void RoomSelectWidget:: start_timer()
 RoomSelectWidget::RoomSelectWidget(QWidget *parent)
 {
 	this->setWindowFlags(Qt::FramelessWindowHint);
-	this->setMaximumSize(320,320);
-	this->setMinimumSize(320,320);
+	this->setMaximumSize(OLED_PIX_X, OLED_PIX_Y);
+	this->setMinimumSize(OLED_PIX_X, OLED_PIX_Y);
 
     m_timer = new QTimer(this);
     connect(m_timer, SIGNAL(timeout()), this, SLOT(TimerTimeOut()));
@@ -53,7 +53,7 @@ RoomSelectWidget::RoomSelectWidget(QWidget *parent)
 	room_select_label = new QLabel(this);
 	room_select_label->setText("select the room please\n");
 	room_select_label->setObjectName("room_select");
-	room_select_label->setGeometry(QRect(0, 140, 320, 60*4)); //�ı��о�
+	room_select_label->setGeometry(QRect(0, 140, 320, 60*4)); //ËÄ±¶ÐÐ¾à
 	room_select_label->setWordWrap(true);
 	room_select_label->setAlignment(Qt::AlignTop);
 
