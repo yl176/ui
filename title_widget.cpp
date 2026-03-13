@@ -257,7 +257,7 @@ void TitleWidget::create_title_widget()
 	anim_group = new QParallelAnimationGroup;
 
 	label_scene= new QLabel(wid_scene);
-	label_scene->setGeometry(QRect(0, 0, 320, 320));
+	label_scene->setGeometry(QRect(0, 0, OLED_PIX_X, OLED_PIX_Y));
 	label_scene->setStyleSheet("background:transparent");
 	label_scene->hide();
 
@@ -642,7 +642,7 @@ void TitleWidget::create_house_widget(TreeModel *model)
 	read_room_id_form_file();
 
 	wid_house = new QWidget(this);
-	//wid_house->setFixedSize(320,320);
+	//wid_house->setFixedSize(OLED_PIX_X, OLED_PIX_Y);
 
 	QModelIndex title;
 	QModelIndex room;
@@ -720,7 +720,7 @@ void TitleWidget::create_house_widget(TreeModel *model)
 		}
 		else if (i == 1)
 		{
-			room_button[i]->setGeometry(QRect(0, 110, 320, 100));
+			room_button[i]->setGeometry(QRect(0, 110, OLED_PIX_X, 100));
 			room_button[i]->setStyleSheet("background-color:rgb(85,85,85);\
 					font-size:40px;color:white;font-weight:440;\
 	                border-radius: 15px;  border: 2px;");
@@ -858,7 +858,7 @@ void TitleWidget::setButtonLevel(HouseButton *button, int level)
 				font-size:30px;color:white;font-weight:440;\
                 border-radius: 15px;  border: 2px;");
 		//button->setGeometry(QRect(15, 0, 320-30, 90));
-		button->setGeometry(QRect(0, 0, 320, 100));	
+		button->setGeometry(QRect(0, 0, OLED_PIX_X, 100));	
 		button->setLevel(level);
 		break;
 		
@@ -1203,7 +1203,7 @@ void TitleWidget::switch_to_scene()
 
 	animation_house->setDuration(300);
 	animation_house->setStartValue(QRect(0,0,320,320));
-	animation_house->setEndValue(QRect(-320, 0, 320, 320));
+	animation_house->setEndValue(QRect(-OLED_PIX_X, 0, 320, 320));
 
 	animation_scene->setDuration(300);
 	animation_scene->setStartValue(QRect(+wid_scene->width(), 0, wid_scene->width(), wid_scene->height()));
@@ -1545,7 +1545,7 @@ void TitleWidget::switch_button_slot()
 	 animation_scene->setEndValue(QRect(320, 0, 320, 320));
 
 	 animation_house->setDuration(300);
-	 animation_house->setStartValue(QRect(-320, wid_house->pos().y(), 320, 320));
+	 animation_house->setStartValue(QRect(-OLED_PIX_X, wid_house->pos().y(), 320, 320));
 	 animation_house->setEndValue(QRect(0, wid_house->pos().y(), 320, 320));
 
 	 group_wins->addAnimation(animation_scene);
@@ -1774,7 +1774,7 @@ void TitleWidget::light_button_select()
 	hvac_button->setIconSize(hvac_button_pixmap.size());
 	hvac_button->setFixedSize(hvac_button_pixmap.width()+0, hvac_button_pixmap.height()+0);
 	scene_wid->move(0, 50);
-	scene_button->setGeometry(QRect(0, 0, 320, 128));
+	scene_button->setGeometry(QRect(0, 0, OLED_PIX_X, 128));
 	curtans_button->setGeometry(QRect(30, 24, 260, 104));
 	curtain_wid->move(0, 130);
 	hvac_wid->move(59,240);
@@ -1958,7 +1958,7 @@ void TitleWidget::curtain_button_select()
 	scene_wid->move(0, 26);
 	scene_button->setGeometry(QRect(30, 24, 260, 104));
 	
-	curtans_button->setGeometry(QRect(0, 0, 320, 128));
+	curtans_button->setGeometry(QRect(0, 0, OLED_PIX_X, 128));
 	curtain_wid->move(0, 120);
 	hvac_wid->move(30,216);
 #else
@@ -2149,7 +2149,7 @@ void TitleWidget::havc_button_select()
 	curtans_button->setGeometry(QRect(29, 0, 260, 104));
 	curtain_wid->move(0, 108);
 	
-    hvac_button->setGeometry(QRect(0, 0, 320, 128));
+    hvac_button->setGeometry(QRect(0, 0, OLED_PIX_X, 128));
 	hvac_wid->move(0,192);
 #else
 	if (current_button == curtans_button)
@@ -2442,7 +2442,7 @@ if(320/(room_num-2) != g_bars_len)
 		QPropertyAnimation *anim_bars = new QPropertyAnimation(label_bar_s, "geometry");
 		anim_bars->setDuration(100);
 		anim_bars->setKeyValueAt(0, QRect(BAR_X, g_bar_y, 10, g_bars_len));
-		anim_bars->setKeyValueAt(1, QRect(BAR_X, 320-320/(room_num-2), 10, 320/(room_num-2)));
+		anim_bars->setKeyValueAt(1, QRect(BAR_X, 320-OLED_PIX_X/(room_num-2), 10, 320/(room_num-2)));
 		anim_bars->start(QAbstractAnimation::DeleteWhenStopped);
 	}
 	else if(move_direct ==EN_MOVE_DOWN)
@@ -2618,14 +2618,14 @@ void TitleWidget::mouseMoveEvent(QMouseEvent *event)
 			}
 			else
 			{
-				g_bar_y = (320-320/(room_num-2)) * abs(wid_house->pos().y()) / (110*(room_num-3));
+				g_bar_y = (320-OLED_PIX_X/(room_num-2)) * abs(wid_house->pos().y()) / (110*(room_num-3));
 				label_bar_s->setGeometry(QRect(BAR_X, g_bar_y, 10, 320/(room_num-2)));
 				g_bars_len = 320/(room_num-2);
 				// label_bar_s->move(BAR_X, g_bar_y);
 			}
 		}
 
-		/*offset_bars = offset*(320-320/(room_num-2))/(110*(room_num-3));
+		/*offset_bars = offset*(320-OLED_PIX_X/(room_num-2))/(110*(room_num-3));
 		bars_y = g_bar_y+ offset_bars;
 		if(bars_y>=320-(320/(room_num-2)))
 		{
@@ -2740,7 +2740,7 @@ void TitleWidget::mouseMoveEvent(QMouseEvent *event)
 
 		if(wid_house->pos().y()<=0)
 		{
-		 g_bar_y =(320-320/(room_num-2)) * abs(wid_house->pos().y()) / (110*(room_num-3));
+		 g_bar_y =(320-OLED_PIX_X/(room_num-2)) * abs(wid_house->pos().y()) / (110*(room_num-3));
 		 label_bar_s->setGeometry(QRect(BAR_X, g_bar_y, 10, 320/(room_num-2)));
 		 g_bars_len= 320/(room_num-2);
 		}
@@ -2770,7 +2770,7 @@ void TitleWidget::mouseMoveEvent(QMouseEvent *event)
 			room_button[move_first_room]->setGeometry(QRect(15, 
 								room_button[move_first_room]->y(), 320-30, 100));
 			room_button[move_first_room+1]->setGeometry(QRect(0, 
-								room_button[move_first_room+1]->y(), 320, 100));
+								room_button[move_first_room+1]->y(), OLED_PIX_X, 100));
 			//room_button[move_first_room]->resize(320-30, 100);
 			//room_button[move_first_room+1]->resize(320, 100);
 			

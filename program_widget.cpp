@@ -14,8 +14,8 @@ void ProgramWidget::translateLanguage()
 ProgramWidget::ProgramWidget(QWidget *parent)
 {
 	this->setWindowFlags(Qt::FramelessWindowHint);
-	this->setMaximumSize(320,320);
-	this->setMinimumSize(320,320);
+	this->setMaximumSize(OLED_PIX_X, OLED_PIX_Y);
+	this->setMinimumSize(OLED_PIX_X, OLED_PIX_Y);
 	
 	//right_center_function_widget = new QWidget(this);
 	dis_label = new QLabel(this);

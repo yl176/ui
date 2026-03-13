@@ -67,8 +67,8 @@ typedef unsigned int    uint32;
 extern int g_language_zh;
 extern int g_aqi_value;
 
-#define OLED_PIX_X  320
-#define OLED_PIX_Y  320
+#define OLED_PIX_X  440
+#define OLED_PIX_Y  1920
 
 #define MAX_SCENE 256
 

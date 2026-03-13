@@ -578,7 +578,7 @@ void MainWidget::showSwitchRoom(int index, QString room_name)
         room_back_widget->showTheRoom(index, room_name);
 
         //statked_widget->setCurrentWidget(room_back_widget);
-        room_back_widget->resize(640,320);
+        room_back_widget->resize(OLED_PIX_X*2, OLED_PIX_Y);
 
         if(tempLabelAni == NULL)
         {
@@ -601,13 +601,13 @@ void MainWidget::showSwitchRoom(int index, QString room_name)
        // tempWidget->grab().save(&file,"PNG");
 
         statked_widget->setCurrentWidget(room_back_widget);
-        room_back_widget->setGeometry(-320,0,640,320);
+        room_back_widget->setGeometry(-OLED_PIX_X,0,640,320);
 
         QPropertyAnimation * animation_In = new QPropertyAnimation(room_back_widget, "geometry");
         group_upScreen->clear();
 
         animation_In->setDuration(300);
-        animation_In->setStartValue(QRect(-320, room_back_widget->pos().y(), 640, 320));
+        animation_In->setStartValue(QRect(-OLED_PIX_X, room_back_widget->pos().y(), 640, 320));
         animation_In->setEndValue(QRect(0, room_back_widget->pos().y(), 320, 320));
 
         group_upScreen->addAnimation(animation_In);
@@ -1181,9 +1181,9 @@ void MainWidget::qrcodeGen()
 	// qDebug() << b2 << endl; 
 	
 	int rand_buf[3];
-	srand(time(NULL)); //\D3Ãµ\B1Ç°ÏµÍ³Ê±\BC\E4\C9\E8\D6\C3\D6\D6\D7\D3
+	srand(time(NULL)); //\D3çŽ«\B1å‰ç³»ç»Ÿæ—¶\BC\E4\C9\E8\D6\C3\D6\D6\D7\D3
 	for(i=0;i<3;i++)
-	rand_buf[i]=(rand()%10);    //\D3\C3rand\BA\AF\CA\FD\C9\FA\B3\C90-9\B5\C4\CB\E6\BB\FA\CA\FD\A3\AC\B2\A2\B8\B3Öµ\B8\F8\CA\FD\D7\E9rand_buf[i]
+	rand_buf[i]=(rand()%10);    //\D3\C3rand\BA\AF\CA\FD\C9\FA\B3\C90-9\B5\C4\CB\E6\BB\FA\CA\FD\A3\AC\B2\A2\B8\B3å€¼\B8\F8\CA\FD\D7\E9rand_buf[i]
 
 	printf("rand_numb=%d",rand_buf[0]);
 	sprintf(setup_ID,"%c",data_buf[rand_buf[0]]);
@@ -1592,7 +1592,7 @@ void MainWidget::enter_room_light_dim()
 }
 void MainWidget::exit_room_light_dim()
 {
-    //5s ÍË³öµ÷¹â½çÃæ
+    //5s é€€å‡ºè°ƒå…‰ç•Œé¢
     syslog(LOG_INFO|LOG_LOCAL1, "exit_room_light_dim cur_in=%d, cur_bottom=%d\n", cur_in, cur_bottom);
 
 	if ( g_statusXmlHandle
@@ -1657,7 +1657,7 @@ void MainWidget::enter_room_light_onoff()
 
 void MainWidget::exit_room_light_onoff()
 {
-    //5s ÍË³öµ÷¹â½çÃæ
+    //5s é€€å‡ºè°ƒå…‰ç•Œé¢
 /*    syslog(LOG_INFO|LOG_LOCAL1, "exit_room_light_dim cur_in=%d, cur_bottom=%d\n", cur_in, cur_bottom);
 
     en_state = EN_SYS_NORM;
@@ -1697,7 +1697,7 @@ void MainWidget::exit_room_light_onoff()
 }
 void MainWidget::exit_room_dim_onoff()
 {
-    //5s ÍË³öµ÷¹â½çÃæ
+    //5s é€€å‡ºè°ƒå…‰ç•Œé¢
     pthread_mutex_lock(&mutex_turnPage);
 
     en_state = EN_SYS_NORM;
@@ -2502,7 +2502,7 @@ void MainWidget::switch_UpSreen_Animation(QWidget *widgetOut,QWidget *widgetIn,i
     {
         int count = 0;
         statked_widget->setCurrentWidget(widgetOut);
-        //widgetOut->resize(640,320);
+        //widgetOut->resize(OLED_PIX_X*2, OLED_PIX_Y);
 		
 		
 		if(tempLabelAni == NULL)
@@ -2539,7 +2539,7 @@ void MainWidget::switch_UpSreen_Animation(QWidget *widgetOut,QWidget *widgetIn,i
 
         animation_Out->setDuration(300);
         animation_Out->setStartValue(QRect(0, widgetOut->pos().y(), 640, 320));
-        animation_Out->setEndValue(QRect(-320, widgetOut->pos().y(), 640, 320));
+        animation_Out->setEndValue(QRect(-OLED_PIX_X, widgetOut->pos().y(), 640, 320));
 
         group_upScreen->addAnimation(animation_Out);
         group_upScreen->start();
@@ -2640,13 +2640,13 @@ void MainWidget::refresh_ui(void)
 			 qDebug()<<"roomid="<<itLight->roomId<<",status="<<itLight->lightStatus;
              if(itLight->lightStatus)
              {
-                 //roomlight_widget[itLight->roomId]->lighton(); //Æô¶¯Ê±²»È¥Ö´ÐÐ¿ª¹ØµÆµÄÃüÁî¡£
+                 //roomlight_widget[itLight->roomId]->lighton(); //å¯åŠ¨æ—¶ä¸åŽ»æ‰§è¡Œå¼€å…³ç¯çš„å‘½ä»¤ã€‚
                  roomlight_widget[itLight->roomId]->set_light_status(1);
 			     title_widget->control_lihght_point(itLight->roomId, 1);
              }
              else
              {
-                 //roomlight_widget[itLight->roomId]->lightoff(); //Æô¶¯Ê±²»È¥Ö´ÐÐ¿ª¹ØµÆµÄÃüÁî¡£
+                 //roomlight_widget[itLight->roomId]->lightoff(); //å¯åŠ¨æ—¶ä¸åŽ»æ‰§è¡Œå¼€å…³ç¯çš„å‘½ä»¤ã€‚
                  roomlight_widget[itLight->roomId]->set_light_status(0);//update light status
 			     title_widget->control_lihght_point(itLight->roomId, 0);
              }

@@ -25,7 +25,7 @@
 //#include "main_menu.h"
 
 #define MAX_ROOM 32
-#define TITLE_MENU_WIDTH 320
+#define TITLE_MENU_WIDTH OLED_PIX_X
 #define TITLE_MENU_HEIGHT 90  //108
 
 extern int g_current_room;

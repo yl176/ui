@@ -50,8 +50,8 @@ void UpdateWidget::get_firmware_update_per(char *value, uint32 len_buf)
 UpdateWidget::UpdateWidget(QWidget *parent)
 {
 	this->setWindowFlags(Qt::FramelessWindowHint);
-	this->setMaximumSize(320,320);
-	this->setMinimumSize(320,320);
+	this->setMaximumSize(OLED_PIX_X, OLED_PIX_Y);
+	this->setMinimumSize(OLED_PIX_X, OLED_PIX_Y);
 	
 	//right_center_function_widget = new QWidget(this);
 	//function_label = new QLabel();
@@ -62,12 +62,12 @@ UpdateWidget::UpdateWidget(QWidget *parent)
 	status->setStyleSheet("font-size:30px;color:rgb(255,255,255);" \
 				"font-weight:bold;text-align:center;background-color:rgb(0,0,0);");
 	status->setAlignment(Qt::AlignCenter);
-	status->setGeometry(QRect(0, 0, 320, 30));
+	status->setGeometry(QRect(0, 0, OLED_PIX_X, 30));
 	
 	perBar = new QProgressBar(this);
 	perBar->setFormat(QString::fromLocal8Bit(""));
 	//perBar->setStyleSheet("background-color:rgb(109, 109, 109); color:rgb(90, 224, 255);border-radius:10px");
-	perBar->setGeometry(QRect(0, 142, 320, 36));
+	perBar->setGeometry(QRect(0, 142, OLED_PIX_X, 36));
 	perBar->setRange(0, 100-1);
 	perBar->setValue(0);
 	perBar->setObjectName("updatePorgress");
