@@ -1,0 +1,397 @@
+QPushButton#transparentButton{
+	background:transparent;
+}
+
+QPushButton#menuButton{
+	background:transparent;
+}
+QPushButton#menuButton::menu-indicator{
+	image:None;
+}
+
+QPushButton#trayButton{
+	background:transparent; 
+	color:white;
+}
+
+QPushButton#switchButton{
+	font-size:35px;
+	color:white;
+	font-weight:440;
+	text-align:right;
+}
+
+QPushButton#okButton{
+	border:1px solid lightgray;
+	background:rgb(230,230,230);
+}
+QPushButton#okButton:hover{
+	border-color:green;
+	background:transparent;
+}
+
+QPushButton#skinButton{
+	border-radius:3px;
+	border:1px solid rgb(180, 190, 200);
+	color:rgb(70, 70, 70);
+	background:transparent;
+}
+
+QPushButton#greenButton{
+	border-radius:5px;
+	background:rgb(110, 190, 10);
+	color:white;
+}
+QPushButton#greenButton:hover{
+	background:rgb(140, 220, 35)
+}
+
+QPushButton#loginGreenButton{
+	border-radius:2px;
+	background:rgb(110, 190, 10);
+	color:white;
+}
+QPushButton#loginGreenButton:hover{
+	background:rgb(140, 220, 35)
+}
+
+QPushButton#loginButton{
+	color:green;
+	border-image:url(:/contentWidget/login);
+}
+QPushButton#loginButton:hover{
+	color:rgb(110, 190, 10);
+}
+
+QPushButton#blueButton{
+	color:rgb(0, 120, 230);
+	background:transparent;
+}
+QPushButton#blueButton:hover{
+	color:rgb(50, 150, 255);
+}
+
+QPushButton#redButton{
+	border-radius:2px;
+    color:white;
+	background:rgb(240, 50, 70);
+}
+QPushButton#redButton:hover{
+	background:rgb(255, 90, 100);
+}
+
+QPushButton#examineAuthorizeButton{
+	text-align:left;
+	color:rgb(0, 120, 230);
+	background:transparent;
+}
+QPushButton#examineAuthorizeButton:hover{
+	color:rgb(50, 150, 255);
+}
+QToolButton#functionButton{
+	background: rgb(0, 0, 255);
+	color: white;
+	width: 75px;
+	height: 20px;
+	font-size: 28px;
+	font-weight:450;
+}
+QToolButton#functionButton:pressed{
+	color: white;
+}
+QToolButton#functionButton:hover{
+	background: rgb(0, 255, 0);
+}
+QToolButton#functionButton:focus{
+    outline: none;
+	border: none;
+}
+QToolButton#hvacButton{
+	color:rgb(255,255,255);
+	background-color:yellow;
+	border:2px solid #124d92;
+	border-radius:15px;
+	min-width:60px;
+	min-height:40px;
+}
+QToolButton#hvacButton:pressed{
+	color: blue;
+}
+
+QToolButton#hvacButton:hover{
+	background: rgb(0, 255, 0);
+}
+QToolButton#hvacButton:focus{
+    outline: none;
+	border: none;
+	background-color:yellow;
+}
+QPushButton:focus{
+    outline: none;
+	border: none;
+}
+QToolButton:focus{
+    outline: none;
+	border: none;
+}
+QToolButton#functionButton:pressed{
+	background: rgb(255, 0, 0);
+}
+QToolButton#transparentToolButton{
+	background:transparent;
+}
+
+QToolButton#grayToolButton{
+    color:gray;
+	background:transparent;
+}
+
+QLabel#normal_label{
+	color:white;
+	font-size:35px;
+}
+
+QLabel#whiteLabel{
+	color:white;
+}
+
+QLabel#grayLabel{
+	color:gray;
+}
+QLabel:focus{
+    outline: none;
+	border: none;
+}
+QLabel#infoLabel{
+	color:rgb(30,170,60);
+}
+QLabel#start{
+	color:rgb(255,255,255);
+	font-size: 50px;	
+}
+QLabel#room_select{
+	color:rgb(255,255,255);
+	font-size: 50px;	
+}
+QPushButton#room_name{
+	color:rgb(255,255,255);
+	font-size: 40px;	
+	text-align:center;
+	font-weight:440;
+}
+QLabel#nodevice{
+	color:rgb(255,255,255);
+	font-size: 50px;
+	
+}
+QLabel#noscene{
+	color:rgb(255,255,255);
+	font-size: 36px;
+	
+}
+QLabel#noshade{
+	color:rgb(255,255,255);
+	font-size: 36px;
+	
+}
+QLabel#nohvac{
+	color:rgb(255,255,255);
+	font-size: 36px;
+	
+}
+QSplitter::handle{
+	background:lightgray;
+}
+
+QMenu{
+    background:white;
+	border:1px solid lightgray;
+}
+QMenu::item{
+	padding:0px 100px 0px 20px;
+	height:25px;
+}
+QMenu::item:selected:enabled{
+    background:lightgray;
+	color:white;
+}
+QMenu::item:selected:!enabled{
+    background:transparent;
+}
+QMenu::separator{
+    height:1px;
+    background:lightgray;
+	margin:2px 0px 2px 0px;
+}
+
+QMenu#menu{
+    background:white;
+	border:1px solid lightgray;
+}
+QMenu#menu::item{
+	padding:0px 40px 0px 30px;
+	height:25px;
+}
+QMenu#menu::item:selected:enabled{
+    background:lightgray;
+	color:white;
+}
+QMenu#menu::item:selected:!enabled{
+    background:transparent;
+}
+QMenu#menu::separator{
+    height:1px;
+    background:lightgray;
+	margin:2px 0px 2px 0px;
+}
+QMenu#menu::indicator {
+    padding:10px;
+}
+
+QToolTip{
+	border:1px solid gray;
+	background:white;
+	color:black;
+}
+
+QComboBox{
+	border:1px solid rgb(180, 180, 180);
+}
+QComboBox QAbstractItemView::item{
+	height:30px;
+}
+QComboBox::down-arrow{
+	image:url(:/loginDialog/arrowDown);
+}
+QComboBox::drop-down{
+	width:20px;
+	border:none;
+}
+
+QListView::item{
+	background:transparent;
+}
+QListView::item:hover{
+	background:rgb(60, 140, 210);
+}
+
+QLineEdit{
+	border:1px solid rgb(180, 180, 180);
+}
+
+QGroupBox::title{
+	color:green;
+}
+
+QTabWidget::pane{
+	border:none;
+}
+QTabWidget::tab-bar{
+	alignment:center;
+}
+QTabBar::tab{
+	background:transparent;
+	color:white;
+	min-width:30ex;
+	min-height:10ex;
+
+}
+QProgressBar {
+	border: 2px solid grey;
+	border-radius: 5px;
+	FontColor: rgb(109,109,109);
+	color:rgb(109,109,109);
+	background-color: rgb(109,109,109);
+}
+
+QProgressBar::chunk {
+	background-color: rgb(90, 224, 255);
+	width: 30px;
+}
+
+QTabBar::tab:hover{
+	background:rgb(255, 255, 255, 100);
+}
+QTabBar::tab:selected{
+	border-color: white;
+	background:white;
+	color:green;
+}
+
+QSlider::groove:horizontal {  
+	border:  2px solid #000; 
+	background: white;  
+	height: 42px;  
+	border-radius: 20px;
+	padding-left:2px;
+	padding-right:2px; 
+}  
+  
+QSlider::sub-page:horizontal {  
+	background: rgb(252, 191, 37);	  
+	color: rgb(109, 109, 109);	
+	border: 2px solid #000; 
+	height: 42px;  
+	border-radius: 0px;  
+	  
+	
+}  
+  
+QSlider::add-page:horizontal {  
+	background: rgb(154, 154, 154);	
+	border: 2px solid #000;  
+	height: 42px;  
+	border-radius: 0px;
+	
+
+}  
+  
+QSlider::handle:horizontal {  
+	background: rgb(255,255,255); 
+	border: 2px solid #FFFFFF;  
+	height: 47px;
+	width: 47px;  
+	margin-top: -3px;  
+	margin-bottom: -3px;  
+	border-radius: 24px;  
+
+}  
+  
+QSlider::handle:horizontal:hover {  
+	background: rgb(255,255,255);
+	border: 2px solid #FFFFFF; 
+	height: 47px;
+	width: 47px;
+	margin-top: -3px;  
+	margin-bottom: -3px;  
+	border-radius: 24px; 
+
+}  
+  
+QSlider::sub-page:horizontal:disabled {  
+	background: #bbb;  
+	border-color: #999;  
+}  
+  
+QSlider::add-page:horizontal:disabled {  
+	background: #eee;  
+	border-color: #999;  
+}  
+  
+QSlider::handle:horizontal:disabled {  
+	background: #eee;  
+	border: 1px solid #aaa;  
+	border-radius: 4px;  
+}  
+
+QScrollBar:vertical
+{
+    width:8px;
+    background:rgb(180, 180, 180);
+}
+
+QScrollBar::handle:vertical
+{
+    background:rgb(255,255,255);
+    border-radius:4px;
+}
